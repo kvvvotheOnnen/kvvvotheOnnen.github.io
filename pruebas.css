@@ -1,0 +1,680 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@300;400;500&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --pading-container: 100px 0px;
+    --color-tittle: #001A49;
+
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow:hidden;
+    padding: var(--pading-container);
+}
+
+.hero{
+   width: 100%;
+   height: 100vh;
+   max-height: 800px;
+   min-height: 600px;    /*este min y max height es por problemas que se tienene con los ipads */
+   position: relative;
+   display: grid;
+   grid-template-rows: 100px 1fr;       /*con este display grid estamos creando dos rows (dos filas en el eje Y)
+                                          donde la primera de arriba tiene 100px de de height-width y la segunda la
+                                          fraccion restante*/
+    color:#fff;
+    
+}
+
+.hero::before{      /*se le agrega la pseudoclase before porque si usamos posicion fixed y clip-path
+                      si posición fixed es hijo de clip-path, el elemento no se fijará en el navegador como debería, si no que se fijará en el clip-path. */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('imagebank/forest.jpg'); /*el degradado que se muestra no es realmente un degradado, es una capa de un negro muy transparente que le ponemos enciam al background img*/
+    
+    background-size: cover;
+    clip-path: polygon(100% 0, 100% 80%, 50% 95%, 0 80%, 0 0);
+    z-index: -1;
+}
+
+.nav{
+    --pading-container:0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.nav__tittle{
+    font-weight: 300;
+}
+.nav__items{
+ list-style:none;   
+}
+.nav__link{
+    margin-left: auto;
+    padding: 0;
+    display: grid;
+    grid-auto-flow: column; /*una forma de ordenar los links de la nav, dejar todo el columnas (en grid son de eje x)*/
+    grid-auto-columns: max-content; 
+    gap: 2em;
+}
+
+.nav__links{
+    text-decoration: none;
+    color:#fff;
+}
+
+.nav__menu{
+    margin-left: auto;
+    cursor: pointer;
+    display: none;
+}
+
+.nav__img{
+    font-size: 30px;
+    display: block;
+}
+
+.nav__close{
+    display: var(--show, none);
+}
+
+.hero__container{   /*contenedor de textos fuera del nav*/
+ max-width: 800px;
+ display: grid;
+ --pading-container:0;
+ grid-auto-rows: max-content;
+ align-content: center;
+ gap: 1em;
+ padding-bottom: 100px;
+ text-align: center;
+
+}
+
+.hero__title{
+    font-size: 3em;
+
+}
+
+.hero__paragraph{
+    padding-bottom: 20px;
+}
+
+.cta{
+    display: inline-block;
+    background-color: #2091f9;
+    justify-self: center; /* de esta forma usa solo su espacio necesario y no todo el width de su grid*/
+    color: #fff;
+    text-decoration: none;
+    padding: 13px 30px;
+    border-radius: 20px;
+    
+}
+/*about*/
+
+
+.about{
+    text-align: center;
+}
+
+.about__main{
+    padding-top: 80px;
+    display: grid;
+    width: 90%;
+    margin: 0 auto;
+    gap: 1em;
+    overflow: hidden;
+    grid-template-columns:repeat(auto-fit, minmax(260px,auto)); /*de esta forma queda desplegado horizontalmente
+                                                                   y además da un efecto media querys en que se ajusta al viewpoort quedando vertical si es necesario*/
+}
+
+.subtitle{
+    color: var(--color-tittle);
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.about__paragraph{
+    line-height: 1.7; /*decreta el espaciado entre lineas verticalmente*/
+
+}
+.about__icons{
+    display: grid;
+    gap: 1em;
+    justify-items: center;
+    width: 260px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.about__icon{
+    width: 40px;
+}
+
+/*knowledge*/
+
+.knowledge{
+    background-color: #e5e5f7;
+    background-image:  radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0,10px 10px;
+}
+
+.knowledge__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    align-items: center;
+}
+
+.knowledge__picture{
+    max-width: 500px;
+    
+}
+
+.knowledge__img{
+    width: 100%;
+    display: block; /*para evitar problemas con espacios verticales*/
+}
+
+.knowledge__pharagraph{
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/*price*/
+
+.price{
+    text-align: center;
+}
+
+.price__table{
+    padding-top: 60px;
+    display: flex;
+    flex-wrap: wrap; /*equivalente a el grid template de arriba, esto se hace para que se ajuste al viewport*/
+    gap:2.5em;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.price__element{
+    background-color:#e5e5f7;
+    text-align: center;
+    border-radius: 10px;
+    width: 330px;
+    padding: 40px;
+    --color-plan: #697861;
+    --color-price: #1d293f;
+    --bg--cta:#FFF;
+    --color-cta:#5454D4;
+    --color-item:#696871;
+}
+
+.price__element--best{
+     background-color: #ff7143;
+     width: 370px;
+     padding: 60px 40px;
+    --color-plan: rgba(255 255 255 / 75%);
+    --color-price: #fff;
+    --bg--cta:#9f3919;
+    --color-cta:#fff;
+    --color-item:#fff;
+}
+
+.price__name{
+    color:var(--color-plan);
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.price__price{
+    font-size: 2.5rem;
+    color: var(--color-price);
+    
+    
+}
+
+.price__items{
+    margin-top: 35px;
+    display: grid;
+    gap: 1em;
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color:var(--color-item);
+}
+
+.price__cta{
+    display: block;
+    padding: 20px 0px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: var(--bg--cta);
+    border-radius: 0 0 1px rgba(0,0,0 .5);
+    color:var(--color-cta);
+}
+
+/*testimony*/
+
+.testimony{
+    background-color: #e5e5f7;
+}
+
+.testimony__container{
+    display:grid;
+    grid-template-columns: 50px 1fr 50px;
+    gap: 1em;
+    text-align: center;
+}
+
+.testimony__body{
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    opacity: 0;      /*aqui escondemos los slider para que aparescan luego, estan todos los sliders posicionados en la                 misma columna y misma fila, pero solo se mostrará el que tiene la calse --show*/
+    pointer-events: none;
+}
+
+.testimony__body--show{
+    pointer-events: unset;
+    opacity: 1;         /*aquí hacemos que aparesca nuevamente pero solo el que tiene la clase --show*/
+    transition: opacity 1.5s ease-in-out;
+
+}
+
+.testimony__course{
+    background-color: royalblue;
+    color: #FFF;
+    display: inline-block;
+    padding:5px;
+}
+
+.testimony__img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover; /*esto se usa para centrar la cara de la chica en la foto*/
+}
+
+.testimony__text{
+    max-width: 700px;
+}
+
+.testimony__arrow{
+    cursor: pointer;
+    width: 90%;
+    
+}
+
+/*Questions*/
+
+.questions{
+    text-align: center;
+}
+
+.questions__container{
+    display: grid;
+    gap: 2em;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.questions__padding{
+    padding: 0;
+    transition: padding 0.3s;
+    border: 1px solid #5454d4;
+    border-radius: 6px;
+}
+
+.questions__padding--add{
+    padding-bottom: 30px;
+}
+
+.questions__answer{
+    padding: 0px 30px 0px;
+    overflow: hidden;
+}
+
+.questions__tittle{
+    display: flex;
+    text-align: left;
+    padding: 30px 0px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--color-tittle);
+    justify-content: space-between;    
+}
+
+
+.questions__arrow{
+    border-radius: 50%;
+    background-color: var(--color-tittle);
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self:flex-end;
+    margin-left: 10px;
+    transition: transform 0.3s;
+
+}
+
+.questions__arrow--rotate{
+    transform: rotate(180deg);
+}
+
+
+.questions__show{
+    text-align: left;
+    height: 0;
+    transition: height 0.3s;
+}
+
+.questions__img{
+    display: block;
+}
+
+.question__copy{
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+/*Footer*/
+
+.footer{
+    background-color: #1d293f;
+}
+
+.footer__tittle{
+    font-weight: 300;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.footer__tittle, .footer__newslatter{
+    color: #fff;
+}
+
+.footer__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 60px;
+}
+
+.nav--footer{
+    padding-bottom: 20px;
+    display: grid;
+    gap: 1em;
+    grid-auto-flow: row;
+    height: 100%;
+}
+
+.nav__link--footer{
+    display: flex;
+    margin: 0;
+    margin-right: 20px;
+    flex-wrap: wrap;
+}
+
+.footer__inputs{
+    margin-top: 10px;
+    display: flex;
+    overflow: hidden;
+}
+
+.footer__input{
+    background-color: #fff;
+    height: 50px;
+    display: block;
+    padding-left: 10px;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    margin-right: 16px;
+}
+
+.footer__submit{
+    margin-left: auto;
+    display: inline-block;
+    height: 50px;
+    padding: 0 20px;
+    background-color: #2091F9;
+    border: none;
+    font-size: 1rem;
+    color: #FFF;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.footer_copy{
+--padding-container: 30px 0px;
+text-align: center;
+color: #fff;
+}
+
+.footer_copyright{
+    font-weight: 300px;
+}
+
+.footer__icons{
+    
+    margin-bottom: 10px;
+
+}
+
+.footer__img{
+    width: 30px;
+}
+
+
+/*adaptar a dispositivos mobiles*/
+
+@media (max-width:800px){
+.nav__menu{
+    display: block;
+}
+
+.nav__link--menu{
+    position: fixed;
+    background-color: #000;
+    top: 0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none; /*se pone para que no reconosca el mouse cuando pasa por encima*/
+    transition: opacity .7s;
+}
+
+.nav__link--show{
+    --show:block;
+    opacity: 1;
+    pointer-events: unset;
+}
+
+.nav__close{
+   position: absolute;
+   top:30px;
+   right: 30px;
+   width: 30px;
+   cursor: pointer;
+    }
+
+.hero__title{
+    font-size: 2.5rem;
+}
+
+.about__main{
+    gap: 2em;
+}
+
+.about__icons:last-of-type{  /*con la pseudoclase :last tomamos el ultimo elemento de los iconos*/
+grid-column: 1/-1; /*anteriormente una de las 3 cartas de viaje se situaba en la esquina inferior, el cual al ser 3 cartas se vé asimetrico, con esta propiedad hacemos que la tercera carta quede abajo pero en medio de las dos de arriba*/
+}
+
+.knowledge__container{
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr;
+    gap: 3em;
+    text-align: center;
+
+
+}
+
+.knowledge__picture{
+    grid-row: 1/2;
+    justify-self: center;
+}
+
+.testimony__container{
+    grid-template-columns: 30px 1fr 30px;
+}
+
+.testimony__body{
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content  max-content;
+    gap: 3em;
+    justify-items: center;
+}
+
+.question__copy{
+    width: 100%;
+}
+
+.footer__container{
+    flex-wrap: wrap;
+}
+
+.nav--footer{
+    width: 100%;
+    justify-items: center;
+}
+
+.nav__link--footer{
+    width: 100%;
+    justify-content: space-evenly;
+    margin:0;
+
+}
+
+.footer__form{
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.footer__input{
+    flex: 1; /*esto se hace para que el input para escribir ocupe todo el espacio sobrante horizontalmente*/
+}
+
+/*fin media query 800px*/
+}
+
+@media (max-width:600px){
+    .hero__title{
+        font-size: 2rem;
+
+    }
+    .hero__paragraph{
+        font-size: 1rem;
+    }
+
+    .subtitle{
+        font-size: 1.8rem;
+    }
+
+    .price__element{
+        width: 90%;
+    }
+
+    .price__element--best{
+        width: 90%;
+        /* padding: 40px; */
+    }
+
+    .testimony__container{
+        grid-template-columns: 28px 1fr 28px;
+        gap: .9em;
+    }
+
+    .price__price{
+        font-size: 2rem;
+    }
+    
+    .testimony__arrow{
+        width: 100%;
+    }
+
+    .testimony__course{
+        margin-top: 15px;
+
+    }
+
+    .testimony__container{
+        grid-template-columns: 28px 1fr 28px;
+        gap: .9em;
+    }
+
+    .questions__tittle{
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .nav--footer{
+        padding-bottom: 60px;
+    }
+
+    .nav__link--footer{
+        justify-content: space-between;
+    }
+
+    .footer__tittle{
+        justify-self: start;
+    }
+
+    .footer__inputs{
+        flex-wrap: wrap;
+    }
+
+    .footer__input{
+        flex-basis: 100%;
+        margin: 0;
+        margin-bottom: 16px;
+    }
+
+    .footer__submit{
+        margin-right: auto;
+        margin-left: 0;
+    }
+
+}
